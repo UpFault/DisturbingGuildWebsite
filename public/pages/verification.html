@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Disturbing - Verification</title>
+  <link rel="stylesheet" href="../stylesheets/verification.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-okaidia.css" />  
+</head>
+<body>
+  <script>
+    function toggleDiscordWidget() {
+      var widget = document.getElementById("discord-widget");
+      var button = document.getElementById("discord-btn");
+
+      if (widget.style.display === "none") {
+        var widgetHeight = widget.offsetHeight;
+        widget.style.display = "block";
+        button.textContent = "▼ Discord";
+        button.style.bottom = widgetHeight + "40px";
+      } else {
+        widget.style.display = "none";
+        button.textContent = "▲ Discord";
+        button.style.bottom = "40px";
+      }
+    }
+  </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.js"></script>
+  <header>
+    <div class="site-name">
+      <h1><a href="http://localhost:3000/">DISTURBING</a></h1>
+      <nav>
+        <ul>
+          <li><a href="features">Features</a></li>
+          <li><a href="verification">Verification</a></li>
+          <li><a href="info">Info</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="discord-popup" id="discord-popup">
+    <button
+      class="discord-btn"
+      id="discord-btn"
+      onclick="toggleDiscordWidget()"
+    >
+      ▲ Discord
+    </button>
+    <div id="discord-widget" class="discord-widget">
+      <iframe
+        src="https://discord.com/widget?id=1094352706564526220&theme=dark"
+        width="350"
+        height="500"
+        allowtransparency="true"
+        frameborder="0"
+        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+      ></iframe>
+    </div>
+  </div>
+  <main class="verification-info"> 
+    <h2>Verification Process</h2>
+    <p> Our verification bot works by allowing users to input their Minecraft
+      username. This information is used solely for setting their nickname in
+      the server. We do not collect any sensitive data about Discord users during
+      the verification process.</p>
+
+    <div class="code-window"> 
+        <code class="language-js">
+          const developmentGuildId = process.env.DEV_GUILD;
+              
+          const mc_username_modal = new ModalBuilder()
+            .setCustomId('mc_username_modal')
+            .setTitle('\u200B');
+                        
+          const usernameInput = new TextInputBuilder()
+            .setCustomId('usernameInput')
+            .setLabel('Please enter your Minecraft username')
+            .setStyle(TextInputStyle.Short)
+            .setMinLength(3)
+            .setMaxLength(16)
+            .setRequired(true);
+                        
+          const modalRow = new ActionRowBuilder().addComponents(usernameInput);
+          mc_username_modal.addComponents(modalRow);
+                        
+          client.on("interactionCreate", async (interaction) => {
+            if (!interaction.isButton()) return;
+                        
+            if (interaction.customId === 'verify_button') {
+              interaction.showModal(mc_username_modal);
+            }
+          });
+          client.on("interactionCreate", async (interaction) => {
+            if (!interaction.isModalSubmit()) return;
+                        
+            if (interaction.customId === 'mc_username_modal') {
+              const username = interaction.fields.getTextInputValue('usernameInput');
+              const member = interaction.member;
+                        
+              if (badWordsFilter.isProfane(username)) {
+                return await interaction.reply({ content: 'Please choose a different Minecraft username. The one you entered contains inappropriate language.', ephemeral: true });
+              }
+                        
+              try {
+                const existingUserResponse = await axios.get('http://localhost:8000/verification');
+                const existingUsers = existingUserResponse.data;
+                            
+                const lowercaseDiscordUsername = member.user.username.toLowerCase();
+                            
+                if (existingUsers.hasOwnProperty(lowercaseDiscordUsername)) {
+                  return await interaction.reply({ content: "You've already been verified. Please DM <@1065796836289413171> or <@717423042111996015> if this is an error.", ephemeral: true });
+                }
+                          
+                const duplicateMinecraftUser = Object.values(existingUsers).find((user) => user.minecraftUsername === username);
+                if (duplicateMinecraftUser) {
+                  return await interaction.reply({ content: 'Please choose a different Minecraft username. The one you entered already exists.', ephemeral: true });
+                }
+                          
+                if (member.id !== member.guild.ownerId) {
+                  await member.setNickname(username);
+                }
+                          
+                await member.roles.add(config.roles.verified);
+                          
+                try {
+                  const response = await axios.post('http://localhost:8000/verification', {
+                    minecraftUsername: username,
+                    memberId: member.id,
+                    discordUsername: lowercaseDiscordUsername
+                  });
+                              
+                  await interaction.reply({ content: `You've successfully verified. Welcome to Disturbing ${username}!`, ephemeral: true });
+                } catch (error) {
+                  console.error("Error while posting verification:", error);
+                  await interaction.reply({ content: 'An error occurred while verifying. Please DM <@1065796836289413171> or <@717423042111996015>.', ephemeral: true });
+                }
+              } catch (error) {
+                console.error("Error while checking existing usernames:", error);
+                await interaction.reply({ content: 'An error occurred while checking for existing usernames. Please DM <@1065796836289413171> or <@717423042111996015>.', ephemeral: true });
+              }
+            }
+          });
+        </code>
+    </div>
+    <p>Below is the information that is saved when a user registers:</p>
+    <div class="code-window"> 
+        <code class="language-js">
+          {
+            "DiscordUser": {
+              "minecraftUsername": "minecraftuser",
+              "discordId": "794077722245252730"
+            }
+          }
+        </code>
+    </div>
+    <footer>
+      <p>&copy; 2024 Disturbing. All rights reserved.</p>
+  </footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,112 @@
+@font-face {
+    font-family: 'Strike Brush';
+    src: url('../fonts/Strike Brush.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: white;
+    background-color: #101010;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    text-align: center;
+}
+
+.site-name {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    padding: 10px 20px;
+}
+
+.site-name a {
+    color: white;
+    text-decoration: none;
+}
+
+.site-name h1 {
+    font-family: 'Strike Brush', sans-serif;
+    font-size: 45px;
+    margin: 0;
+    color: #f8f8ff;
+    text-shadow:
+      4px 4px 4px rgba(0, 0, 0, 1),
+      0 0 4px rgba(255, 0, 67, 0.5),
+      0 0 7px rgba(255, 0, 67, 0.5),
+      0 0 10px rgba(255, 0, 67, 0.5),
+      0 0 15px rgba(255, 0, 67, 0.5);
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: x-large;
+    font-family: 'Strike Brush', sans-serif;
+    text-shadow:
+    4px 4px 4px rgba(0, 0, 0, 1),
+    0 0 4px rgba(255, 0, 67, 0.5),
+    0 0 7px rgba(255, 0, 67, 0.5),
+    0 0 10px rgba(255, 0, 67, 0.5),
+    0 0 15px rgba(255, 0, 67, 0.5);
+}
+
+nav ul li:hover a {
+    color: rgba(255, 0, 67, 0.5);
+}
+
+
+.discord-popup {
+    position: fixed;
+    bottom: 0; /* Align the button with the bottom of the page */
+    right: 20px;
+    display: flex;
+    flex-direction: column-reverse; /* To reverse the order of elements */
+}
+
+.discord-btn {
+    background-color: #7289da; /* Discord color */
+    color: white;
+    border: none;
+    border-radius: 15px 15px 0 0; /* Rounded corners on top */
+    padding: 5px 15px;
+    cursor: pointer;
+    transition: bottom 0.5s ease; /* Smooth transition for the button */
+}
+
+.discord-widget {
+    display: none;
+    position: absolute;
+    bottom: 40px; /* Adjust this value as needed */
+    right: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Shadow effect */
+    transition: bottom 0.5s ease; /* Smooth transition for the widget */
+}
+
+.discord-widget iframe {
+    border: none;
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    height: 50px;
+    margin-top: 20px;
+}

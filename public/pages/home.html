@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disturbing - Home</title>
+    <link rel="stylesheet" href="../stylesheets/home.css">
+</head>
+<body>
+    <header>
+        <div class="site-name">
+            <h1><a href="http://localhost:3000/">DISTURBING</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="features">Features</a></li>
+                    <li><a href="verification">Verification</a></li>
+                    <li><a href="info">Info</a></li>
+                </ul>
+            </nav>        
+        </div>
+    </header>
+    <main style="text-align: center;">
+        <h1>Welcome to the Disturbing Guild Website!</h1>
+        <p>Our goal is to provide both new and seasoned guild members with valuable information about our guild and the tools we offer.</p>
+        
+        <h2>About Our Guild</h2>
+        <p>The Hypixel guild Disturbing is a SkyBlock-based guild with an entry-level requirement of level 200. Founded in 2023 and rebranded in early 2024, our guild strives to create a vibrant and inclusive community for players of all skill levels.</p>  
+    </main>
+    <footer>
+        <p>&copy; 2024 Disturbing. All rights reserved.</p>
+    </footer>
+    <div class="discord-popup" id="discord-popup">
+        <button class="discord-btn" id="discord-btn" onclick="toggleDiscordWidget()">▲ Discord</button>
+        <div id="discord-widget" class="discord-widget">
+            <iframe src="https://discord.com/widget?id=1094352706564526220&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+        </div>
+    </div>
+
+    <script>
+        function toggleDiscordWidget() {
+            var widget = document.getElementById("discord-widget");
+            var button = document.getElementById("discord-btn");
+            
+            if (widget.style.display === "none") {
+                var widgetHeight = widget.offsetHeight;
+                widget.style.display = "block";
+                button.textContent = "▼ Discord"; // Change button text to show arrow down
+                button.style.bottom = (widgetHeight + 40) + "px"; // Adjust button position
+            } else {
+                widget.style.display = "none";
+                button.textContent = "▲ Discord"; // Change button text to show arrow up
+                button.style.bottom = "40px"; // Adjust button position
+            }
+        }
+    </script>
+</body>
+</html>

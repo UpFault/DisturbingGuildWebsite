@@ -1,0 +1,21 @@
+@import url('./home.css'); /* Import styles from home.css */
+
+.guild-info {
+    text-align: center;
+    margin: 0 auto; /* This centers the section horizontally */
+    max-width: 600px; /* Adjust the maximum width as needed */
+  }
+  
+  .guild-info h2 {
+    margin-bottom: 20px;
+  }
+  
+  .guild-info ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .guild-info ul li {
+    margin-bottom: 10px;
+  }
+  

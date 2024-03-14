@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Disturbing - Info</title>
+  <link rel="stylesheet" href="../stylesheets/info.css" />
+</head>
+<body>
+  <script>
+    function toggleDiscordWidget() {
+      var widget = document.getElementById("discord-widget");
+      var button = document.getElementById("discord-btn");
+
+      if (widget.style.display === "none") {
+        var widgetHeight = widget.offsetHeight;
+        widget.style.display = "block";
+        button.textContent = "▼ Discord";
+        button.style.bottom = widgetHeight + "40px";
+      } else {
+        widget.style.display = "none";
+        button.textContent = "▲ Discord";
+        button.style.bottom = "40px";
+      }
+    }
+  </script>
+  <header>
+    <div class="site-name">
+      <h1><a href="http://localhost:3000/">DISTURBING</a></h1>
+      <nav>
+        <ul>
+          <li><a href="features">Features</a></li>
+          <li><a href="verification">Verification</a></li>
+          <li><a href="info">Info</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="discord-popup" id="discord-popup">
+    <button
+      class="discord-btn"
+      id="discord-btn"
+      onclick="toggleDiscordWidget()"
+    >
+      ▲ Discord
+    </button>
+    <div id="discord-widget" class="discord-widget">
+      <iframe
+        src="https://discord.com/widget?id=1094352706564526220&theme=dark"
+        width="350"
+        height="500"
+        allowtransparency="true"
+        frameborder="0"
+        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+      ></iframe>
+    </div>
+  </div>
+
+  <section class="guild-info">
+    <h2>Guild Information</h2>
+    <p><strong>Started:</strong> March 7th 2023</p>
+    <p><strong>Original Name:</strong> Velocity</p>
+    <p><strong>Rebranded To:</strong> Disturbing</p>
+    <p><strong>Founder:</strong> Consecure</p>
+    <p><strong>Staff:</strong></p>
+    <ul>
+      <li>FPFishFire</li>
+      <li>IGBLF</li>
+      <li>Loekaii</li>
+      <li>Cloap</li>
+      <li>UpFault</li>
+    </ul>
+    <br>
+    <p>Here's a 100% not fake story about the guild</p>
+    <br>
+    <p>
+      In the vast and competitive world of Hypixel, there was a player known as Consecure. A seasoned warrior and strategist, Consecure had long harbored dreams of creating a guild that would stand out amidst the multitude of factions vying for dominance.
+    </p>
+    
+    <p>
+      In 2023, Consecure decided to turn his vision into reality and founded the Velocity guild. With a core group of loyal members, Velocity quickly gained recognition for its skill in battle and its tight-knit community. However, as time passed, Consecure noticed a decline in activity and enthusiasm among the guild's ranks.
+    </p>
+    
+    <p>
+      Determined to reignite the spark that had once fueled Velocity's success, Consecure made the bold decision to rebrand the guild in 2024. Renaming it to Disturbing, he sought to shake off the stagnation and breathe new life into the community.
+    </p>
+    
+    <p>
+      The rebranding wasn't just about changing the name; it was a strategic move to signal a fresh start. Consecure introduced new ranking systems, adjusted requirements, and emphasized inclusivity to attract a wider pool of players.
+    </p>
+    
+    <p>
+      In a heartfelt message to the guild, Consecure explained the reasons behind the rebranding and outlined his plans for the future. He acknowledged the challenges the guild had faced but expressed his unwavering commitment to its success.
+    </p>
+    
+    <p>
+      With the rebranding complete, Disturbing emerged as a force to be reckoned with on Hypixel. Under Consecure's leadership, the guild thrived, attracting skilled players from far and wide. Together, they forged bonds of friendship, conquered challenges, and left their mark on the world of online gaming.
+    </p>
+    
+    <p>
+      As for Consecure, he continued to lead by example, balancing his dedication to the guild with his real-life responsibilities. His passion for gaming and his unwavering belief in the power of community drove him to push the boundaries of what was possible in the virtual realm.
+    </p>
+    
+    <p>
+      And so, the story of Consecure and the guild of Disturbing became a legend in the annals of Hypixel history—a testament to the resilience of the human spirit and the transformative power of leadership.
+    </p>
+    
+  </section>
+    <footer>
+      <p>&copy; 2024 Disturbing. All rights reserved.</p>
+  </footer>
+  </main>
+</body>
+</html>
